@@ -62,16 +62,16 @@ public class Turno
 
 
 
-    public boolean estoyDisponible()
+    public CambioEstadoTurno estoyDisponible()
     {
         for (CambioEstadoTurno cambioEstado :cambiosEstadoTurno){
             if(cambioEstado.esActual()){
                if(!(cambioEstado.getEstado().esReservado())){
-                    return true;
+                    return cambioEstado;
                }
             }
         }
-        return false;
+        return null;
     }
 
     public boolean esPosteriorAFechaActual(String fechaActualString) {

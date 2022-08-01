@@ -57,7 +57,6 @@ public class ControlReservaDeTurno {
         boolean turnoYaReservado=false;
         buscarFechaActual();
         ArrayList<String[]> turnosString = rtSeleccionado.mostrarTurnos(fechaActual);
-        //Aca faltan dos metodos del diagrama de secuencia. (Ver como implementar porque no hacen falta)
         int seleccionTurno = pantalla.pedirSeleccionTurno(turnosString);
         if(!(turnoSeleccionado(Integer.parseInt(turnosString.get(seleccionTurno)[4])))){
             turnoYaReservado = true;
@@ -144,7 +143,8 @@ public class ControlReservaDeTurno {
     }
 
     private boolean turnoSeleccionado(int seleccionTurno) {
-        if(rtSeleccionado.turnos.get(seleccionTurno).estoyDisponible()){
+        ultimoCambioEstadoTurno = rtSeleccionado.turnos.get(seleccionTurno).estoyDisponible();
+        if( ultimoCambioEstadoTurno != null){
             turnoSeleccionado = rtSeleccionado.turnos.get(seleccionTurno);
             return true;
         }
