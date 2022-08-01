@@ -91,12 +91,12 @@ public class Turno
         return new String[]{diaSemana,fechaHoraInicio,fechaHoraFin,estado,""};
     }
 
-    public boolean reservarTurno(Estado estadoReservado, String fechaActual) {
-        for(CambioEstadoTurno cambioEstadoTurno :cambiosEstadoTurno){
-            if(cambioEstadoTurno.esActual()){
-                cambioEstadoTurno.finalizar(fechaActual);
-            }
-        }
+    public boolean reservarTurno(Estado estadoReservado, String fechaActual, CambioEstadoTurno ultimoCambioEstado) {
+        ultimoCambioEstado.finalizar(fechaActual);
         return cambiosEstadoTurno.add(new CambioEstadoTurno(fechaActual, estadoReservado));
+    }
+
+    public boolean asignarNuevoTurno(AsignacionCientificoCI asignacionCientificoCI) {
+        return asignacionCientificoCI.asignarNuevoTurnoACientifico(this);
     }
 }

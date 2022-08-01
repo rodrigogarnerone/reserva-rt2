@@ -159,7 +159,7 @@ public class ControlReservaDeTurno {
     }
     private boolean generarReservaTurnoSeleccionado(PersonalCientifico cientificoEnSesion, ArrayList<Estado> estados, PantallaReservaDeTurno pantalla) {
         Estado estadoReservado = obtenerEstadoReservado(estados, pantalla);
-        return rtSeleccionado.registrarReserva(turnoSeleccionado, estadoReservado, cientificoEnSesion, fechaActual);
+        return rtSeleccionado.registrarReserva(turnoSeleccionado, estadoReservado, fechaActual, ultimoCambioEstadoTurno, asignacionCientifico);
     }
 
     private Estado obtenerEstadoReservado(ArrayList<Estado> estados, PantallaReservaDeTurno pantalla) {

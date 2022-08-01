@@ -236,7 +236,7 @@ public class RecursoTecnologico
         return turnosString;
     }
 
-    public Boolean registrarReserva(Turno turnoSeleccionado, Estado estadoReservado, PersonalCientifico cientificoEnSesion, String fechaActual) {
-        return turnoSeleccionado.reservarTurno(estadoReservado, fechaActual) && centroInvestigacion.asignarNuevoTurno(turnoSeleccionado, cientificoEnSesion);
+    public Boolean registrarReserva(Turno turnoSeleccionado, Estado estadoReservado, String fechaActual, CambioEstadoTurno ultimoCambioEstadoTurno, AsignacionCientificoCI asignacionCientifico) {
+        return turnoSeleccionado.reservarTurno(estadoReservado, fechaActual, ultimoCambioEstadoTurno) && turnoSeleccionado.asignarNuevoTurno(asignacionCientifico);
     }
 }
