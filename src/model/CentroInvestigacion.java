@@ -223,13 +223,13 @@ public class CentroInvestigacion
         return nombre;
     }
 
-    public boolean esCientificoActivo(PersonalCientifico cientificoEnSesion) {
+    public AsignacionCientificoCI esCientificoActivo(PersonalCientifico cientificoEnSesion) {
         for(AsignacionCientificoCI asignacion :cientificos){
             if(asignacion.esCientificoActivo(cientificoEnSesion)){
-                return true;
+                return asignacion;
             }
         }
-        return false;
+        return null;
     }
 
     public boolean asignarNuevoTurno(Turno turnoSeleccionado, PersonalCientifico cientificoEnSesion) {

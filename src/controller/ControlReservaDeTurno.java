@@ -9,6 +9,8 @@ public class ControlReservaDeTurno {
     GeneradorObjetos generador;
     TipoRecursoTecnologico tipoRTseleccionado;
     RecursoTecnologico rtSeleccionado;
+    AsignacionCientificoCI asignacionCientifico;
+    CambioEstadoTurno ultimoCambioEstadoTurno;
     String fechaActual;
     Turno turnoSeleccionado;
     int opcionesDeNotificacion;
@@ -44,7 +46,8 @@ public class ControlReservaDeTurno {
 
         //Paso 6
         PersonalCientifico cientificoEnSesion = generador.getSesion().getCientificoEnSesion();
-        if(!verificarCentroDeCinetifico(cientificoEnSesion)){
+        asignacionCientifico = verificarCentroDeCinetifico(cientificoEnSesion);
+        if(asignacionCientifico == null){
             pantalla.msg("Usted no pertenece a este Centro de Investigacion, se requiere definir tiempo de antelacion de reserva del Centro...");
             return false;
         }
@@ -68,8 +71,6 @@ public class ControlReservaDeTurno {
                 pantalla.error("\nEl turno seleccionado ya se encuentra reservado, por favor seleccione un turno sin reservar");
             }
         }
-
-
         //Paso 7-8
 
         //Paso 9-10
@@ -134,8 +135,7 @@ public class ControlReservaDeTurno {
         rtSeleccionado = recurso;
     }
 
-    private boolean verificarCentroDeCinetifico(PersonalCientifico cientificoEnSesion) {
-
+    private AsignacionCientificoCI verificarCentroDeCinetifico(PersonalCientifico cientificoEnSesion) {
         return rtSeleccionado.cientificoPerteneceAMiCentroDeInvestigacion(cientificoEnSesion);
     }
 

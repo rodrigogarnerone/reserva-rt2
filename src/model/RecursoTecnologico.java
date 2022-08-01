@@ -220,7 +220,7 @@ public class RecursoTecnologico
         return modelo.getMarcaYModelo();
     }
 
-    public boolean cientificoPerteneceAMiCentroDeInvestigacion(PersonalCientifico cientificoEnSesion) {
+    public AsignacionCientificoCI cientificoPerteneceAMiCentroDeInvestigacion(PersonalCientifico cientificoEnSesion) {
         return centroInvestigacion.esCientificoActivo(cientificoEnSesion);
     }
 
