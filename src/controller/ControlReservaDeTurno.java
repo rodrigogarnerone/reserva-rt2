@@ -35,7 +35,7 @@ public class ControlReservaDeTurno {
         //Paso 4-5
         ArrayList<Estado> estados = generador.getEstados();
         ArrayList<RecursoTecnologico> recursosTecnologicos = generador.getRecursosTecnologicos();
-        ArrayList<ArrayList<String[]>> rTsDeTipoActivosStringsAgrupados = buscarRTDeTipoSinDarDeBaja(recursosTecnologicos);//Es un quilombo este metodo pero basicamente recibo listas de String de: [[[centro1],[centro2]],[[recurso1],...,[recursoN]]]
+        ArrayList<ArrayList<String[]>> rTsDeTipoActivosStringsAgrupados = buscarRTDeTipoSinDarDeBaja(recursosTecnologicos);//Se recibe listas de String de: [[[centro1],[centro2]],[[recurso1],...,[recursoN]]]
         int seleccionRT = pantalla.pedirSeleccionRT(rTsDeTipoActivosStringsAgrupados);
         for (RecursoTecnologico recurso :recursosTecnologicos){
             if(recurso.getNumeroRT()==seleccionRT){
@@ -81,7 +81,7 @@ public class ControlReservaDeTurno {
         //Paso 9-10
 
         //Paso 11
-        if(generarReservaTurnoSeleccionado(cientificoEnSesion, estados, pantalla)){
+        if(generarReservaTurnoSeleccionado( estados, pantalla)){
             if(opcionNotificacion == 0 && generarEmail(generador.getInterfazEmail(),cientificoEnSesion, pantalla)){
                 bandera = true;
             }
@@ -91,8 +91,6 @@ public class ControlReservaDeTurno {
 
 
     }
-
-
 
     public void tipoRTSeleccionado(TipoRecursoTecnologico tipoRTseleccionado) {
         this.tipoRTseleccionado = tipoRTseleccionado;
@@ -118,7 +116,7 @@ public class ControlReservaDeTurno {
                 centrosInvestigacion1.add(recursoActivo.mostrarRT()[0]);
         }
 
-        ArrayList<String[]> centrosInvestigacion = new ArrayList<>();//Tuve que hacer esto porque tengo que devolver los mismos elementos en una lista
+        ArrayList<String[]> centrosInvestigacion = new ArrayList<>();
         for(String centro :centrosInvestigacion1){
             String[] array = {centro};
             centrosInvestigacion.add(array);
@@ -157,7 +155,7 @@ public class ControlReservaDeTurno {
     private int presentarFormasDeNotificacion(PantallaReservaDeTurno pantalla) {
         return pantalla.solicitarFormaNotificacion();
     }
-    private boolean generarReservaTurnoSeleccionado(PersonalCientifico cientificoEnSesion, ArrayList<Estado> estados, PantallaReservaDeTurno pantalla) {
+    private boolean generarReservaTurnoSeleccionado( ArrayList<Estado> estados, PantallaReservaDeTurno pantalla) {
         Estado estadoReservado = obtenerEstadoReservado(estados, pantalla);
         return rtSeleccionado.registrarReserva(turnoSeleccionado, estadoReservado, fechaActual, ultimoCambioEstadoTurno, asignacionCientifico);
     }
