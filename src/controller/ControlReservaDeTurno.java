@@ -11,6 +11,7 @@ public class ControlReservaDeTurno {
     RecursoTecnologico rtSeleccionado;
     AsignacionCientificoCI asignacionCientifico;
     CambioEstadoTurno ultimoCambioEstadoTurno;
+    CambioEstadoRT ultimoCambioEstadoRT;
     String fechaActual;
     Turno turnoSeleccionado;
     int opcionesDeNotificacion;
@@ -24,10 +25,7 @@ public class ControlReservaDeTurno {
 
         //Paso 2-3
         ArrayList<TipoRecursoTecnologico> tiposRT = generador.getTiposRT();
-        ArrayList<String> tiposRTStrings = new ArrayList<>();
-        for(TipoRecursoTecnologico tipo :tiposRT){
-            tiposRTStrings.add(tipo.getNombre());
-        }
+        ArrayList<String> tiposRTStrings = buscarTiposRT(tiposRT);
         int seleccionTipoRT = pantalla.solicitarSeleccionarTipoRT(tiposRTStrings);
         tipoRTSeleccionado(tiposRT.get(seleccionTipoRT));
         //Paso 2-3
@@ -90,6 +88,14 @@ public class ControlReservaDeTurno {
         //Paso 11
 
 
+    }
+
+    private ArrayList<String> buscarTiposRT(ArrayList<TipoRecursoTecnologico> tiposRT) {
+        ArrayList<String> tiposRTStrings = new ArrayList<>();
+        for(TipoRecursoTecnologico tipo :tiposRT){
+            tiposRTStrings.add(tipo.getNombre());
+        }
+        return tiposRTStrings;
     }
 
     public void tipoRTSeleccionado(TipoRecursoTecnologico tipoRTseleccionado) {
