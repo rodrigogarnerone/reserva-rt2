@@ -55,6 +55,7 @@ public class ControlReservaDeTurno {
         boolean turnoYaReservado=false;
         buscarFechaActual();
         ArrayList<String[]> turnosString = rtSeleccionado.mostrarTurnos(fechaActual);
+        ArrayList<String[]> turnosStringOrdenados = agruparYOrdenarTurnos(turnosString);
         int seleccionTurno = pantalla.pedirSeleccionTurno(turnosString);
         if(!(turnoSeleccionado(Integer.parseInt(turnosString.get(seleccionTurno)[4])))){
             turnoYaReservado = true;
@@ -86,8 +87,14 @@ public class ControlReservaDeTurno {
         }
         return finCU(bandera);
         //Paso 11
+    }
 
-
+    private ArrayList<String[]> agruparYOrdenarTurnos(ArrayList<String[]> turnosString) {
+        ArrayList<String[]> turnosStringOrdenados = new ArrayList<>();
+        for(String[] turno: turnosString ){
+            turnosStringOrdenados.add(turno);
+        }
+        return turnosStringOrdenados;
     }
 
     private ArrayList<String> buscarTiposRT(ArrayList<TipoRecursoTecnologico> tiposRT) {
